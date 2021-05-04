@@ -1,14 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>타임키퍼 활성화</title>
+  <title>UBMK 줌 링크</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+    body {
+      background-color: #252525;
+      height: 100vh;
+      margin: 0;
+    }
+
+    div.links {
+      margin: auto;
+      width: 40%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+
+    div.links button {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 25px;
+      font-weight: 500;
+      color: #d3b8c8;
+      margin: .3rem;
+      background-color: transparent;
+      border: #d3b8c8 .1em solid;
+      border-radius: .3em;
+      transform: rotate3d(1, 1, 0, 30deg);
+      opacity: 0;
+      animation: tilt 1s ease 0s 1 normal forwards;
+      transition: .8s;
+    }
+
+    div.links button:hover {
+      color: #252525;
+      background-color: #d3b8c8;
+      transition: 0s;
+    }
+
+    div.links button:focus {
+      outline: none;
+    }
+
+    @keyframes tilt {
+      to {
+        transform: rotate3d(0, 0, 0, 0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      div.links {
+        width: 60%;
+      }
+    }
+
+    @media (max-width: 767px) {
+      div.links {
+        width: 100%;
+      }
+
+      div.links button {
+        font-size: 18.5px;
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Activating Time-Keeper...</h1>
+  <div class="links">
+    <button>7학년 줌</button>
+    <button>8학년 줌</button>
+    <button>9학년 줌</button>
+    <button>10학년 줌</button>
+    <button>11학년 줌</button>
+    <button>12학년 줌</button>
+    <button>예배 줌</button>
+    <button>구현지 쌤 줌</button>
+  </div>
   <script>
-    fetch('https://jandi.herokuapp.com').then(() => alert('Succeed in activating Time-Keeper'))
+    const linkBox = [
+      "https://zoom.us/j/8693412771?pwd=dnhrZm84aEpEdHRhcldsbTE1cHk3QT09",
+      "https://zoom.us/j/87543166553?pwd=SVlqZGU2d3lCamhCRjByYU1xdDBkQT09",
+      "https://zoom.us/j/4024457347?pwd=eUw0S3c3Ykw0aE80Z2hCSFY1Qnl6UT09",
+      "https://zoom.us/j/97841501767?pwd=ZVYyQjg5Nm1hWlhYS3pjdytkK2tGUT09",
+      "https://zoom.us/j/92963691990?pwd=Rko1RDYxdXowekp6c091NmVPckMxZz09",
+      "https://zoom.us/j/4655678528?pwd=OTZZay8vUEpCMDg0OVJoRlNGSjl5Zz09",
+      "https://zoom.us/j/87399022878?pwd=QkZETjhWRlpRQUpSOXRYMmJVU3YxUT09",
+      "https://zoom.us/j/977408287?pwd=b01MV1ZvVWhIMjRKVmtkaTNkNXBtZz09",
+    ]
+
+    document.querySelectorAll('div.links button').forEach((el, i) => {
+      el.style.animationDelay = `${i + 2}00ms`
+      el.onclick = () => location.href = linkBox[i]
+    })
+
+    fetch('/count')
   </script>
 </body>
+
 </html>
